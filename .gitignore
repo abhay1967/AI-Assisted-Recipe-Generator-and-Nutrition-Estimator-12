@@ -1,0 +1,51 @@
+# =========================
+# Node / Package Managers
+# =========================
+node_modules/
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# =========================
+# Environment Variables
+# =========================
+.env
+.env.local
+.env.production
+.env.development
+
+# =========================
+# Next.js
+# =========================
+.next/
+out/
+.vercel/
+
+# =========================
+# Build Outputs
+# =========================
+dist/
+build/
+
+# =========================
+# Logs
+# =========================
+logs
+*.log
+
+# =========================
+# OS Files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# IDE / Editor
+# =========================
+.vscode/
+.idea/
+
+# =========================
+# Optional cache
+# =========================
+.cache/
