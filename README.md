@@ -1,153 +1,198 @@
-# AI-Assisted Recipe Generator and Nutrition Estimator
+🍽️ AI-Assisted Recipe Generator & Nutrition Estimator
 
-A full-stack web application that generates recipes using AI and provides detailed nutritional information. Built with Next.js, React, Node.js, and MongoDB.
+A full-stack web application that generates recipes using AI based on user-provided ingredients and calculates detailed nutritional information using official USDA data.
 
-## 🚀 Features
+Built with Next.js, React, Node.js, Express, and MongoDB, and deployed using Vercel and Render.
 
-- **AI-Powered Recipe Generation**: Generate unique recipes based on available ingredients
-- **Nutritional Analysis**: Get detailed nutritional information for each recipe
-- **Favorite Recipes**: Save and manage your favorite recipes
-- **Modern UI**: Responsive design with dark/light mode support
-- **Ingredient Management**: Track and manage your ingredients
+🚀 Features
 
-## 🛠 Tech Stack
+AI-Powered Recipe Generation
+Generate complete recipes (ingredients, steps, servings) using Claude AI.
 
-### Frontend
-- **Framework**: Next.js 13+ with App Router
-- **UI Components**: Radix UI Primitives
-- **Styling**: Tailwind CSS
-- **State Management**: React Hooks
-- **Form Handling**: React Hook Form
-- **Data Fetching**: SWR
+Accurate Nutrition Estimation
+Calories, protein, carbs, and fat calculated using USDA FoodData Central.
 
-### Backend
-- **Runtime**: Node.js
-- **Framework**: Express.js
-- **Database**: MongoDB with Mongoose ODM
-- **Authentication**: JWT
-- **AI Integration**: Claude AI API
-- **Nutrition Data**: USDA FoodData Central API
+Favorite Recipes
+Save recipes to MongoDB and view them anytime.
 
-## 📦 Prerequisites
+Modern Responsive UI
+Clean UI with dark/light mode support.
 
-- Node.js 18+ and npm/yarn
-- MongoDB Atlas account or local MongoDB instance
-- Claude AI API key
-- USDA FoodData Central API key
+Ingredient Parsing
+Automatically parses raw ingredient input into structured data.
 
-## 🚀 Getting Started
+Production-Ready Deployment
+Backend on Render, frontend on Vercel.
 
-### 1. Clone the repository
-```bash
+🛠 Tech Stack
+Frontend
+
+Framework: Next.js (App Router)
+
+UI Components: Radix UI + Custom Components
+
+Styling: Tailwind CSS
+
+State Management: React Hooks
+
+Charts: Chart.js
+
+Data Fetching: Fetch API
+
+Backend
+
+Runtime: Node.js
+
+Framework: Express.js
+
+Database: MongoDB Atlas + Mongoose
+
+AI Integration: Claude API
+
+Nutrition Data: USDA FoodData Central API
+
+⚠️ Authentication is intentionally not implemented to keep the app simple and focused.
+
+📦 Prerequisites
+
+Node.js 18+
+
+MongoDB Atlas account
+
+Claude API key
+
+USDA FoodData Central API key
+
+🚀 Getting Started (Local Setup)
+1️⃣ Clone the Repository
 git clone https://github.com/abhay1967/AI-Assisted-Recipe-Generator-and-Nutrition-Estimator-12.git
 cd AI-Assisted-Recipe-Generator-and-Nutrition-Estimator-12
-```
 
-### 2. Set up the Backend
-```bash
-# Navigate to backend directory
+2️⃣ Backend Setup
 cd backend
-
-# Install dependencies
 npm install
 
-# Create a .env file in the backend directory and add:
+
+Create a .env file inside backend/:
+
 MONGODB_URI=your_mongodb_connection_string
-JWT_SECRET=your_jwt_secret
 CLAUDE_API_KEY=your_claude_api_key
 USDA_API_KEY=your_usda_api_key
-PORT=5000
+PORT=8000
 
-# Start the development server
-npm run dev
-```
 
-### 3. Set up the Frontend
-```bash
-# Navigate to frontend directory
+Start backend:
+
+npm start
+
+
+Health check:
+
+http://localhost:8000/health
+
+3️⃣ Frontend Setup
 cd ../recipe-generator-frontend-main
-
-# Install dependencies
 npm install
 
-# Create a .env.local file in the frontend directory and add:
-NEXT_PUBLIC_API_URL=http://localhost:5000
 
-# Start the development server
+Create .env.local:
+
+NEXT_PUBLIC_API_URL=http://localhost:8000/api
+
+
+Start frontend:
+
 npm run dev
-```
 
-### 4. Open your browser
-Visit `http://localhost:3000` to see the application in action.
 
-## 📂 Project Structure
+Open:
 
-```
+http://localhost:3000
+
+🌐 Deployed Demo
+Frontend (Vercel)
+https://ai-assisted-recipe-generator-and-nu.vercel.app
+
+Backend (Render)
+https://ai-recipe-backend-ifrk.onrender.com
+
+Backend Health Check
+https://ai-recipe-backend-ifrk.onrender.com/health
+
+📂 Project Structure
 AI-Assisted-Recipe-Generator-and-Nutrition-Estimator-12/
 ├── backend/
-│   ├── config/           # Configuration files
-│   ├── controllers/      # Route controllers
-│   ├── models/           # MongoDB models
-│   ├── routes/           # API routes
-│   ├── services/         # Business logic and external services
-│   ├── server.js         # Express server entry point
+│   ├── config/
+│   ├── controllers/
+│   ├── models/
+│   ├── routes/
+│   ├── services/
+│   ├── server.js
 │   └── package.json
+│
 ├── recipe-generator-frontend-main/
-│   ├── app/              # Next.js app directory
-│   ├── components/       # Reusable UI components
-│   ├── lib/              # Utility functions
-│   ├── public/           # Static assets
-│   ├── services/         # API service functions
+│   ├── app/
+│   ├── components/
+│   ├── lib/
+│   ├── public/
+│   ├── services/
 │   └── package.json
+│
 └── README.md
-```
 
-## 🌐 API Endpoints
+🔌 API Endpoints
+Recipes
 
-### Recipes
-- `GET /api/recipes` - Get all recipes
-- `POST /api/recipes` - Create a new recipe
-- `GET /api/recipes/:id` - Get a specific recipe
-- `PUT /api/recipes/:id` - Update a recipe
-- `DELETE /api/recipes/:id` - Delete a recipe
+POST /api/recipes/generate – Generate recipe via AI
 
-### Ingredients
-- `GET /api/ingredients` - Get all ingredients
-- `POST /api/ingredients` - Add a new ingredient
+GET /api/recipes – Get all recipes
 
-### Favorites
-- `GET /api/favorites` - Get user's favorite recipes
-- `POST /api/favorites` - Add recipe to favorites
-- `DELETE /api/favorites/:id` - Remove recipe from favorites
+PATCH /api/recipes/:id/favorite – Toggle favorite
 
-## 🔒 Environment Variables
+GET /api/recipes/favorites – Get favorite recipes
 
-### Backend (`.env`)
-- `MONGODB_URI`: MongoDB connection string
-- `JWT_SECRET`: Secret for JWT token generation
-- `CLAUDE_API_KEY`: API key for Claude AI
-- `USDA_API_KEY`: API key for USDA FoodData Central
-- `PORT`: Server port (default: 5000)
+Ingredients
 
-### Frontend (`.env.local`)
-- `NEXT_PUBLIC_API_URL`: Backend API URL (e.g., http://localhost:5000)
+GET /api/ingredients
 
-## 🤝 Contributing
+POST /api/ingredients
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
+🔐 Environment Variables
+Backend (.env)
+Variable	Description
+MONGODB_URI	MongoDB Atlas connection string
+CLAUDE_API_KEY	Claude AI API key
+USDA_API_KEY	USDA nutrition API key
+PORT	Server port (default: 8000)
+Frontend (.env.local)
+Variable	Description
+NEXT_PUBLIC_API_URL	Backend API base URL
+🤝 Contributing
+
+Fork the repo
+
+Create a feature branch
+
+git checkout -b feature/my-feature
 
 
-## 🙏 Acknowledgments
+Commit changes
 
-- [Claude AI](https://www.anthropic.com/) for the recipe generation
-- [USDA FoodData Central](https://fdc.nal.usda.gov/) for nutritional data
-- [Next.js](https://nextjs.org/) and [React](https://reactjs.org/) for the frontend framework
-- [MongoDB](https://www.mongodb.com/) for the database
+Push to GitHub
 
----
+Open a Pull Request
 
-Made with ❤️ by Abhay Chaudhary
+🙏 Acknowledgments
+
+Claude AI – Recipe generation
+
+USDA FoodData Central – Nutrition data
+
+Next.js & React – Frontend framework
+
+MongoDB Atlas – Database
+
+❤️ Author
+
+Abhay Chaudhary
+Built with passion for AI, nutrition, and clean system design.
